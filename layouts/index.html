@@ -1,8 +1,73 @@
 {{ define "main" }}
+    {{ $pages := .Site.RegularPages }}
+    {{ $categories := dict }}
+    {{ range $pages }}
+        {{ if hasPrefix .Path "post" }}
+            {{ $splitedPath := split .Path "/" }}
+            {{ $categoryArray := slice }}
+            {{ range $splitedPath }}
+                {{ $first:= index $splitedPath 0 }}
+                {{ $last:= index (last 1 $splitedPath) 0 }}
+                {{ if and (ne . $first) (ne . $last) }}
+                    {{ $categoryArray = $categoryArray | append . }}
+                {{ end }}
+            {{ end }}
+            {{ if gt (len $categoryArray) 0 }}
+                {{ $newCategory := dict $categoryArray "" }}
+                {{ $result := false }}
+                {{ $now := $categories }}
+                {{ range $categoryArray }}
+                    {{ if reflect.IsMap $now }}
+                        {{ $next := index $now . }}
+                        {{ if not (reflect.IsMap $next) }}
+                            {{ $result = true }}
+                        {{ end }}
+                        {{ $now = $next }}
+                    {{ end }}
+                {{ end }}
+                {{ if $result }}
+                    {{ $categories = merge $categories $newCategory }}
+                {{ end }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
     <div class="main">
         {{/* side bar */}}
         <aside class="left-sidebar">
-            <div>Side Bar</div>
+            <div class="sidebar-container flex flex-col gap-12">
+                {{/* 프로필 */}}
+                <div class="profile">{{ .Site.Title }}</div>
+                {{/* 검색 */}}
+                <div class="search">
+                    <input type="text" placeholder="검색어를 입력하세요" />
+                    <button>검색</button>
+                </div>
+                {{/* 카테고리 */}}
+                <div class="categories">
+                    <h3>카테고리</h3>
+                    {{ range $category, $next := $categories }}
+                        <div class="depth-1">
+                            {{ $category }}
+                            {{ if reflect.IsMap $next }}
+                                {{ range $category, $next := $next }}
+                                    <div class="depth-2">
+                                        {{ $category }}
+                                    </div>
+                                {{ end }}
+                            {{ end }}
+                        </div>
+                    {{ end }}
+                </div>
+                {{/* 태그 */}}
+                <div class="tags">
+                    <h3>테그</h3>
+                    {{ range .Site.Taxonomies.tags }}
+                        <div class="tag">
+                            {{ .Page.Title }}
+                        </div>
+                    {{ end }}
+                </div>
+            </div>
         </aside>
 
         {{/* main section */}}
