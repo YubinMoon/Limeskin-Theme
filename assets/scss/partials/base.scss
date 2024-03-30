@@ -1,0 +1,11 @@
+html {
+    overflow-y: scroll;
+}
+
+body {
+    background: var(--body-background);
+    margin: 0;
+    font-family: var(--base-font-family);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

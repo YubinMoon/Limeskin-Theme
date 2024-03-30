@@ -1,3 +1,31 @@
 {{ define "main" }}
-    <div>The first template</div>
+    <div class="main">
+        {{/* side bar */}}
+        <aside class="left-sidebar">
+            <div>Side Bar</div>
+        </aside>
+
+        {{/* main section */}}
+        {{ $pages := where .Site.RegularPages "Type" "in" "post" }}
+        {{ $sorted := $pages.ByDate.Reverse }}
+        {{ $pag := .Paginate ($sorted) }}
+
+
+        <section class="article-list">
+            {{ range $index, $element := $pag.Pages }}
+                <div class="card">
+                    <div class="body">
+                        <div class="title">
+                            <a href="{{ .RelPermalink }}">
+                                {{ .Title }}
+                            </a>
+                        </div>
+                        <div class="short-content">
+                            {{ .Summary }}
+                        </div>
+                    </div>
+                </div>
+            {{ end }}
+        </section>
+    </div>
 {{ end }}
