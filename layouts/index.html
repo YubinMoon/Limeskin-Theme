@@ -1,107 +1,27 @@
 {{ define "main" }}
-    {{ $pages := .Site.RegularPages }}
-    {{ $categories := dict }}
-    {{ range $pages }}
-        {{ if hasPrefix .Path "post" }}
-            {{ $splitedPath := split .Path "/" }}
-            {{ $categoryArray := slice }}
-            {{ range $splitedPath }}
-                {{ $first:= index $splitedPath 0 }}
-                {{ $last:= index (last 1 $splitedPath) 0 }}
-                {{ if and (ne . $first) (ne . $last) }}
-                    {{ $categoryArray = $categoryArray | append . }}
-                {{ end }}
-            {{ end }}
-            {{ if gt (len $categoryArray) 0 }}
-                {{ $newCategory := dict $categoryArray "" }}
-                {{ $result := false }}
-                {{ $now := $categories }}
-                {{ range $categoryArray }}
-                    {{ if reflect.IsMap $now }}
-                        {{ $next := index $now . }}
-                        {{ if not (reflect.IsMap $next) }}
-                            {{ $result = true }}
-                        {{ end }}
-                        {{ $now = $next }}
-                    {{ end }}
-                {{ end }}
-                {{ if $result }}
-                    {{ $categories = merge $categories $newCategory }}
-                {{ end }}
-            {{ end }}
-        {{ end }}
-    {{ end }}
-    <div class="main">
-        {{/* side bar */}}
-        <aside class="left-sidebar">
-            <div class="sidebar-container">
-                {{/* 프로필 */}}
-                <div class="profile box">{{ .Site.Title }}</div>
-                {{/* 검색 */}}
-                <div class="search box">
-                    <div class="item">
-                        <i></i>
-                        <input type="text" />
+    {{/* main section */}}
+    {{ $pages := where .Site.RegularPages "Type" "in" "post" }}
+    {{ $sorted := $pages.ByDate.Reverse }}
+    {{ $pag := .Paginate ($sorted) }}
+
+
+    <section class="article-list">
+        <header class="header">
+            <h1>전체 글</h1>
+        </header>
+        {{ range $index, $element := $pag.Pages }}
+            <div class="card">
+                <div class="body">
+                    <div class="title">
+                        <a href="{{ .RelPermalink }}">
+                            {{ .Title }}
+                        </a>
                     </div>
-                </div>
-                {{/* 카테고리 */}}
-                <div class="categories box">
-                    <div class="subject">카테고리</div>
-                    <ul class="dropdown">
-                        {{ range $category, $next := $categories }}
-                            <li class="depth-1">
-                                {{ $category }}
-                                {{ if reflect.IsMap $next }}
-                                    <ul>
-                                        {{ range $category, $next := $next }}
-                                            <li class="depth-2">
-                                                {{ $category }}
-                                            </li>
-                                        {{ end }}
-                                    </ul>
-                                {{ end }}
-                            </li>
-                        {{ end }}
-                    </ul>
-                </div>
-                {{/* 태그 */}}
-                <div class="tags box">
-                    <div class="subject">테그</div>
-                    <ul class="tagBox">
-                        {{ range .Site.Taxonomies.tags }}
-                            <li class="tag">
-                                {{ .Page.Title }}
-                            </li>
-                        {{ end }}
-                    </ul>
+                    <div class="short-content">
+                        {{ .Summary }}
+                    </div>
                 </div>
             </div>
-        </aside>
-
-        {{/* main section */}}
-        {{ $pages := where .Site.RegularPages "Type" "in" "post" }}
-        {{ $sorted := $pages.ByDate.Reverse }}
-        {{ $pag := .Paginate ($sorted) }}
-
-
-        <section class="article-list">
-            <header class="header">
-                <h1>전체 글</h1>
-            </header>
-            {{ range $index, $element := $pag.Pages }}
-                <div class="card">
-                    <div class="body">
-                        <div class="title">
-                            <a href="{{ .RelPermalink }}">
-                                {{ .Title }}
-                            </a>
-                        </div>
-                        <div class="short-content">
-                            {{ .Summary }}
-                        </div>
-                    </div>
-                </div>
-            {{ end }}
-        </section>
-    </div>
+        {{ end }}
+    </section>
 {{ end }}

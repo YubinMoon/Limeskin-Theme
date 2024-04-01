@@ -1,0 +1,81 @@
+.left-sidebar {
+    background-color: var(--sidebar-background);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--sidebar-width);
+    height: 100%;
+
+    .sidebar-container {
+        display: flex;
+        flex-direction: column;
+        padding-top: 20px;
+        gap: 24px;
+
+        .box {
+            padding-left: 20px;
+            padding-right: 20px;
+
+            .subject {
+                font-size: 16px;
+                font-weight: bold;
+                margin-bottom: 12px;
+            }
+        }
+
+        .profile {
+            margin-top: 12px;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .search {
+            .item {
+                padding: 10px;
+                display: flex;
+                gap: 12px;
+                background-color: var(--search-box-background);
+                border-radius: 2px;
+            }
+            i {
+                flex: 1 0 auto;
+            }
+            i::before {
+                content: "검색";
+            }
+            input {
+                width: 100%;
+                margin: 0;
+                border: none;
+                flex: 0 1 auto;
+                background: transparent;
+                font-size: 16px;
+            }
+        }
+
+        .categories {
+            .depth-1 {
+                font-size: 1.1rem;
+            }
+            .depth-2 {
+                display: none;
+                padding-left: 5px;
+                z-index: 1; /*다른 요소들보다 앞에 배치*/
+            }
+            .depth-1:hover .depth-2 {
+                display: block;
+            }
+        }
+
+        .tags {
+            .tagBox {
+                font-size: 1.1rem;
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+            }
+        }
+    }
+}
