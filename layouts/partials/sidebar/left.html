@@ -35,7 +35,9 @@
 <aside class="left-sidebar">
     <div class="sidebar-container">
         {{/* 프로필 */}}
-        <div class="profile box">{{ .Site.Title }}</div>
+        <div class="profile box">
+            <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+        </div>
         {{/* 검색 */}}
         <div class="search box">
             <div class="item">
