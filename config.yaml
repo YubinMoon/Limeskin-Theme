@@ -1,0 +1,7 @@
+markup:
+  highlight:
+    style: github-dark
+  tableOfContents:
+    endLevel: 3
+    ordered: false
+    startLevel: 1
