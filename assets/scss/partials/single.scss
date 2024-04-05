@@ -3,6 +3,7 @@
         pre {
             padding: 10px;
             border-radius: 5px;
+            overflow-x: auto;
         }
         code {
             line-height: 1.5rem;
@@ -67,5 +68,10 @@
         margin-right: auto;
         font-size: 16px;
         line-height: 2rem;
+    }
+    img {
+        width: 100%;
+        border-radius: 5px;
+        margin-bottom: 1rem;
     }
 }
