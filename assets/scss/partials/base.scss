@@ -9,6 +9,10 @@ body {
     font-size: var(--base-font-size);
 }
 
+code {
+    font-family: var(--code-font-family);
+}
+
 input {
     outline: none;
     color: inherit;

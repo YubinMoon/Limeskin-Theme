@@ -51,3 +51,10 @@
 	font-weight: 900;
 	src: url('./SUIT-Heavy.woff2') format('woff2');
 }
+
+@font-face {
+	font-family: 'D2Coding';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
