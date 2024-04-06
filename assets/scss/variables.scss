@@ -1,8 +1,11 @@
 // global color style
 :root {
     --body-background: #252629;
+    --text-1: #f9f9f3;
+    --text-2: #cccccc;
     --body-text-color: #f9f9f3;
     --text-darker: #cccccc;
+    --header-background: #37373a;
 }
 
 // global font family
@@ -23,4 +26,16 @@
     --sidebar-background: #3f4044;
     --search-box-background: #4a4b4f;
     --sidebar-width: 250px;
+}
+
+// size
+:root {
+    --base-font-size: 16px;
+    --header-height: 250px;
+    --header-margin: 64px;
+    --card-height: 130px;
+    --card-width: 800px;
+    --article-width: 720px;
+    --TOC-background: var(--sidebar-background);
+    --img-max-height: 300px;
 }

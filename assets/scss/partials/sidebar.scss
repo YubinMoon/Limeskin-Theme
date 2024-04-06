@@ -26,32 +26,39 @@
         .profile {
             margin-top: 12px;
             margin-bottom: 12px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 1.3rem;
+
+            .home {
+                font-weight: 600;
+                font-size: 1.3rem;
+                text-align: center;
+
+                &:hover {
+                    font-weight: 700;
+                }
+            }
         }
 
         .search {
             .item {
-                padding: 10px;
+                padding: 8px;
                 display: flex;
                 gap: 12px;
                 background-color: var(--search-box-background);
-                border-radius: 2px;
-            }
-            i {
-                flex: 1 0 auto;
-            }
-            i::before {
-                content: "검색";
-            }
-            input {
-                width: 100%;
-                margin: 0;
-                border: none;
-                flex: 0 1 auto;
-                background: transparent;
-                font-size: 16px;
+                border-radius: 4px;
+
+                .search-icon {
+                    flex: 1 0 auto;
+
+                    &::before {
+                        content: "검색";
+                    }
+                }
+
+                input {
+                    flex: 0 1 auto;
+                    width: 100%;
+                    background: transparent;
+                }
             }
         }
 
@@ -59,11 +66,13 @@
             .depth-1 {
                 font-size: 1.1rem;
             }
+
             .depth-2 {
                 display: none;
                 padding-left: 5px;
                 z-index: 1; /*다른 요소들보다 앞에 배치*/
             }
+
             .depth-1:hover .depth-2 {
                 display: block;
             }

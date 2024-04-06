@@ -1,117 +1,42 @@
 .main {
     padding-left: var(--sidebar-width);
+}
 
-    .left-sidebar {
-        background-color: var(--sidebar-background);
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: var(--sidebar-width);
-        height: 100%;
+.article-list {
+    line-height: 1.5rem;
 
-        .sidebar-container {
-            display: flex;
-            flex-direction: column;
-            padding-top: 20px;
-            gap: 24px;
-
-            .box {
-                padding-left: 20px;
-                padding-right: 20px;
-
-                .subject {
-                    font-size: 16px;
-                    font-weight: bold;
-                    margin-bottom: 12px;
-                }
-            }
-
-            .profile {
-                margin-top: 12px;
-                margin-bottom: 12px;
-                text-align: center;
-                font-weight: bold;
-                font-size: 1.3rem;
-            }
-
-            .search {
-                .item {
-                    padding: 10px;
-                    display: flex;
-                    gap: 12px;
-                    background-color: var(--search-box-background);
-                    border-radius: 2px;
-                }
-                i {
-                    flex: 1 0 auto;
-                }
-                i::before {
-                    content: "검색";
-                }
-                input {
-                    width: 100%;
-                    margin: 0;
-                    border: none;
-                    flex: 0 1 auto;
-                    background: transparent;
-                    font-size: 16px;
-                }
-            }
-
-            .categories {
-                .depth-1 {
-                    font-size: 1.1rem;
-                }
-                .depth-2 {
-                    display: none;
-                    padding-left: 5px;
-                    z-index: 1; /*다른 요소들보다 앞에 배치*/
-                }
-                .depth-1:hover .depth-2 {
-                    display: block;
-                }
-            }
-
-            .tags {
-                .tagBox {
-                    font-size: 1.1rem;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 4px;
-                }
-            }
-        }
+    .header {
+        height: var(--header-height);
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        background-color: var(--header-background);
+        margin-bottom: var(--header-margin);
     }
 
-    .article-list {
-        line-height: 1.5rem;
-        .header {
-            height: 250px;
-            display: flex;
-            flex-direction: column;
-            text-align: center;
-            justify-content: center;
-            background-color: #37373a;
-            margin-bottom: 64px;
-        }
-        .card {
-            height: 130px;
-            width: 800px;
-            display: flex;
-            align-items: center;
-            margin-left: auto;
-            margin-right: auto;
-            padding-top: 5px;
-            padding-bottom: 5px;
-            padding: 10px;
-            border-top: 1px solid white;
-        }
+    .card {
+        height: var(--card-height);
+        width: var(--card-width);
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 1rem;
+        border-top: 1px solid var(--text-2);
+
         .title {
+            display: inline;
             font-size: 1.5rem;
-            font-weight: bold;
+            font-weight: 600;
+
+            &:hover {
+                font-weight: 800;
+            }
         }
+
         .short-content {
-            margin-top: 10px;
+            margin-top: 1rem;
             color: var(--text-darker);
             overflow: hidden;
             max-height: 72px;

@@ -36,12 +36,14 @@
     <div class="sidebar-container">
         {{/* 프로필 */}}
         <div class="profile box">
-            <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+            <div class="home">
+                <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+            </div>
         </div>
         {{/* 검색 */}}
         <div class="search box">
             <div class="item">
-                <i></i>
+                <i class="search-icon"></i>
                 <input type="text" />
             </div>
         </div>
