@@ -1,12 +1,17 @@
 .article-detail {
     .highlight {
         pre {
-            padding: 16px;
+            outline: none;
             border-radius: 5px;
-            overflow-x: auto;
+            padding: 16px;
         }
         code {
-            line-height: 1.5rem;
+            white-space: pre-wrap;
+            word-break: break-all;
+            line-height: 1.3rem;
+        }
+        code > span:not(:first-child) {
+            margin-top: 0.2rem;
         }
     }
     .header {
