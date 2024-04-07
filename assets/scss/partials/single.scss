@@ -95,5 +95,18 @@
             max-height: var(--img-max-height);
             border-radius: 5px;
         }
+
+        blockquote {
+            background-color: var(--quote-background);
+            border-left: 3px solid var(--highligh-color);
+            margin-left: 0;
+            margin-right: 0;
+            padding: 0.5rem 1.5rem;
+
+            p {
+                line-height: 1.3rem;
+                margin: 0;
+            }
+        }
     }
 }
