@@ -63,18 +63,10 @@
         }
 
         .categories {
-            .depth-1 {
-                font-size: 1.1rem;
-            }
-
-            .depth-2 {
-                display: none;
-                padding-left: 5px;
-                z-index: 1; /*다른 요소들보다 앞에 배치*/
-            }
-
-            .depth-1:hover .depth-2 {
-                display: block;
+            ul {
+                &:not(:first-child) {
+                    padding-left: 1rem;
+                }
             }
         }
 

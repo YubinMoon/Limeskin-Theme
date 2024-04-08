@@ -50,22 +50,7 @@
         {{/* 카테고리 */}}
         <div class="categories box">
             <div class="subject">카테고리</div>
-            <ul class="dropdown">
-                {{ range $category, $next := $categories }}
-                    <li class="depth-1">
-                        {{ $category }}
-                        {{ if reflect.IsMap $next }}
-                            <ul>
-                                {{ range $category, $next := $next }}
-                                    <li class="depth-2">
-                                        {{ $category }}
-                                    </li>
-                                {{ end }}
-                            </ul>
-                        {{ end }}
-                    </li>
-                {{ end }}
-            </ul>
+            {{ partial "categories.html" (dict "ctx" . "parentCategories" nil "level" 0 "maximumLevel" 4 ) }}
         </div>
         {{/* 태그 */}}
         <div class="tags box">
