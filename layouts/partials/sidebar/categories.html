@@ -1,0 +1,38 @@
+{{ $ctx := .ctx }}
+{{ $parentCategories := .parentCategories | default slice }}
+{{ $level := .level }}
+{{ $maximumLevel := .maximumLevel }}
+
+{{ $subCategories := dict }}
+{{ $allCategories := $ctx.Site.Taxonomies.categories }}
+
+{{ range $key, $value := $allCategories }}
+    {{ $splited := split $key "/" }}
+    {{ $isMatch := partial "sidebar/category-match-fnc.html" (dict "pageCategories" $splited "parentCategories" $parentCategories) }}
+    {{ if eq (len $splited) (add $level 1) }}
+        {{ if $isMatch }}
+            {{ $validPage := slice }}
+            {{ range $value.Pages }}
+                {{ if not (in $validPage .) }}
+                    {{ $validPage = $validPage | append . }}
+                {{ end }}
+            {{ end }}
+            {{ $subCategories = merge $subCategories (dict $key (dict "term" (index $splited $level) "count" (len $validPage) )) }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+{{ if gt (len $subCategories) 0 }}
+    <ul>
+        {{ range $key, $value := $subCategories }}
+            <li>
+                <div class="node-sub-category">
+                    <a href="/categories/{{ $key }}">{{ $value.term }}</a>
+                    <span class="count">({{ $value.count }})</span>
+                </div>
+                {{ if lt (add $level 1) $maximumLevel }}
+                    {{ partial "sidebar/categories.html" (dict "ctx" $ctx "parentCategories" (split $key "/") "level" (add $level 1) "maximumLevel" $maximumLevel ) }}
+                {{ end }}
+            </li>
+        {{ end }}
+    </ul>
+{{ end }}

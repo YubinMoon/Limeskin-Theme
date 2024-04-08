@@ -15,13 +15,11 @@
 
 <!-- match all parentCategory nodes agains pageCategory nodes and if one fails, we don't have a match, hence FALSE result is set -->
 {{ if and $result (gt $parentCategories 0) }}
-
     {{ range $index, $element := $parentCategories }}
         {{ if not (eq (index $parentCategories $index) (index $pageCategories $index)) }}
             {{ $result = false }}
         {{ end }}
     {{ end }}
-
 {{ end }}
 
 

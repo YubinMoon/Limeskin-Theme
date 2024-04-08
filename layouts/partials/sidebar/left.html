@@ -50,7 +50,7 @@
         {{/* 카테고리 */}}
         <div class="categories box">
             <div class="subject">카테고리</div>
-            {{ partial "categories.html" (dict "ctx" . "parentCategories" nil "level" 0 "maximumLevel" 4 ) }}
+            {{ partial "sidebar/categories.html" (dict "ctx" . "parentCategories" nil "level" 0 "maximumLevel" 4 ) }}
         </div>
         {{/* 태그 */}}
         <div class="tags box">
