@@ -58,7 +58,9 @@
             <ul class="tagBox">
                 {{ range .Site.Taxonomies.tags }}
                     <li class="tag">
-                        {{ .Page.Title }}
+                        <a href="{{ .Page.RelPermalink }}">
+                            {{ .Page.Data.Term }}
+                        </a>
                     </li>
                 {{ end }}
             </ul>

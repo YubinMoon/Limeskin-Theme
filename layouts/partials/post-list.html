@@ -1,0 +1,42 @@
+{{ $ctx := .ctx }}
+{{ $allPages := .allPages }}
+{{ $title := .title }}
+{{ $data := .data }}
+
+{{ $pages := where $allPages "Type" "in" "post" }}
+{{ $sorted := $pages.ByDate.Reverse }}
+{{ $pag := $ctx.Paginate ($sorted) }}
+
+
+<section class="article-list">
+    <header class="header">
+        <h1>
+            {{ if $data }}
+                {{ if eq $data.Singular "category" }}
+                    {{ $data.Term }}
+                {{ else if eq $data.Singular "tag" }}
+                    #
+                    {{ $data.Term }}
+                {{ else }}
+                    {{ $data.Term }}
+                {{ end }}
+            {{ else }}
+                전체 글
+            {{ end }}
+        </h1>
+    </header>
+    {{ range $index, $element := $pag.Pages }}
+        <div class="card">
+            <div class="content">
+                <div class="title">
+                    <a href="{{ .RelPermalink }}">
+                        {{ .Title }}
+                    </a>
+                </div>
+                <div class="short-content">
+                    {{ .Summary }}
+                </div>
+            </div>
+        </div>
+    {{ end }}
+</section>

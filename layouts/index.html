@@ -1,27 +1,3 @@
 {{ define "main" }}
-    {{/* main section */}}
-    {{ $pages := where .Site.RegularPages "Type" "in" "post" }}
-    {{ $sorted := $pages.ByDate.Reverse }}
-    {{ $pag := .Paginate ($sorted) }}
-
-
-    <section class="article-list">
-        <header class="header">
-            <h1>전체 글</h1>
-        </header>
-        {{ range $index, $element := $pag.Pages }}
-            <div class="card">
-                <div class="content">
-                    <div class="title">
-                        <a href="{{ .RelPermalink }}">
-                            {{ .Title }}
-                        </a>
-                    </div>
-                    <div class="short-content">
-                        {{ .Summary }}
-                    </div>
-                </div>
-            </div>
-        {{ end }}
-    </section>
+    {{ partial "post-list.html" (dict "ctx" . "allPages" .Site.RegularPages) }}
 {{ end }}

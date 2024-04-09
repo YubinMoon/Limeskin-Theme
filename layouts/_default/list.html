@@ -1,0 +1,10 @@
+{{ define "main" }}
+    {{ $allPages := slice }}
+    {{ range .Pages }}
+        {{ if not ( in $allPages . ) }}
+            {{ $allPages = $allPages | append . }}
+        {{ end }}
+    {{ end }}
+
+    {{ partial "post-list.html" (dict "ctx" . "allPages" $allPages "data" .Data ) }}
+{{ end }}
