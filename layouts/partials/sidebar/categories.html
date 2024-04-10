@@ -21,13 +21,16 @@
         {{ end }}
     {{ end }}
 {{ end }}
+
 {{ if gt (len $subCategories) 0 }}
-    <ul>
+    <ul class="category-list">
         {{ range $key, $value := $subCategories }}
             <li>
-                <div class="node-sub-category">
-                    <a href="/categories/{{ $key }}">{{ $value.term }}</a>
-                    <span class="count">({{ $value.count }})</span>
+                <div class="category">
+                    <a href="/categories/{{ $key }}">
+                        <span class="name">{{ $value.term }}</span>
+                        <span class="count">({{ $value.count }})</span>
+                    </a>
                 </div>
                 {{ if lt (add $level 1) $maximumLevel }}
                     {{ partial "sidebar/categories.html" (dict "ctx" $ctx "parentCategories" (split $key "/") "level" (add $level 1) "maximumLevel" $maximumLevel ) }}

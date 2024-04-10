@@ -33,6 +33,14 @@
                         {{ .Title }}
                     </a>
                 </div>
+                <div class="category">
+                    <span>{{ .Date.Format "2006. 1. 2." }}</span>
+                    <span class="divider">-</span>
+                    {{ $category := index (.Params.categories | last 1) 0 }}
+                    <a href="{{ .Site.BaseURL }}categories/{{ $category }}">
+                        {{ $category }}
+                    </a>
+                </div>
                 <div class="short-content">
                     {{ .Summary }}
                 </div>
